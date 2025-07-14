@@ -1,2 +1,2 @@
 # first_attempt_game_dev
-me just fucking around trying something with openGL and C#
+me just fucking around trying something with openTK and C#
