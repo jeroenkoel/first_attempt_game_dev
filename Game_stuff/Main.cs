@@ -27,5 +27,24 @@ namespace openTK_basics
         {
             CenterWindow();
         }
+
+        protected override void OnResize(ResizeEventArgs e)
+        {
+            GL.Viewport(0, 0, e.Width, e.Height);
+
+            base.OnResize(e);
+        }
+
+        protected override void OnLoad()
+        {
+            IsVisible = true;
+
+            base.OnLoad();
+        }
+
+        protected override void OnRenderFrame(FrameEventArgs args)
+        {
+            base.OnRenderFrame(args);
+        }
     }
 }
