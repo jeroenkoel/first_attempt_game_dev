@@ -1,11 +1,13 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.IO;
 
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Common.Input;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+
+using StbImageSharp;
 
 namespace openTK_basics
 {
@@ -38,6 +40,12 @@ namespace openTK_basics
         protected override void OnLoad()
         {
             IsVisible = true;
+
+            // add Icon to window :)
+            ImageResult loadedIcon;
+            using (Stream stream = File.OpenRead("./../../../../images/bean.png")) loadedIcon = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
+            Image _icon = new Image(loadedIcon.Width, loadedIcon.Height, loadedIcon.Data);
+            Icon = new WindowIcon(_icon);
 
             base.OnLoad();
         }
