@@ -8,8 +8,10 @@ namespace Game_stuff
     {
         static void Main()
         {
-            using Main window = new Main(1920, 1000, "test window");
-            window.Run();
+            using (Game window = new Game(1920, 1000, "test window"))
+            {
+                window.Run();
+            }
         }
     }
 }

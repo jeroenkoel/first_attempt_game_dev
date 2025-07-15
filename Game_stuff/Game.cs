@@ -3,17 +3,18 @@ using System.IO;
 
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.Common;
-using OpenTK.Windowing.Common.Input;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
+using OpenTK.Windowing.GraphicsLibraryFramework;
 
 using StbImageSharp;
+using OpenTK.Windowing.Common.Input;
 
 namespace openTK_basics
 {
-    class Main : GameWindow
+    class Game : GameWindow
     {
-        public Main(int width, int height, string title)
+        public Game(int width, int height, string title)
             : base(GameWindowSettings.Default, new NativeWindowSettings()
             {
                 Title = title,
@@ -44,7 +45,7 @@ namespace openTK_basics
             // add Icon to window :)
             ImageResult loadedIcon;
             using (Stream stream = File.OpenRead("./../../../../images/bean.png")) loadedIcon = ImageResult.FromStream(stream, ColorComponents.RedGreenBlueAlpha);
-            Image _icon = new Image(loadedIcon.Width, loadedIcon.Height, loadedIcon.Data);
+            OpenTK.Windowing.Common.Input.Image _icon = new OpenTK.Windowing.Common.Input.Image(loadedIcon.Width, loadedIcon.Height, loadedIcon.Data);
             Icon = new WindowIcon(_icon);
 
             base.OnLoad();
@@ -53,6 +54,16 @@ namespace openTK_basics
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
+        }
+
+        protected override void OnUpdateFrame(FrameEventArgs args)
+        {
+            base.OnUpdateFrame(args);
+
+            if (KeyboardState.IsKeyDown(Keys.Escape))
+            {
+                Close();
+            }
         }
     }
 }
