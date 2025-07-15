@@ -31,13 +31,6 @@ namespace openTK_basics
             CenterWindow();
         }
 
-        protected override void OnResize(ResizeEventArgs e)
-        {
-            GL.Viewport(0, 0, e.Width, e.Height);
-
-            base.OnResize(e);
-        }
-
         protected override void OnLoad()
         {
             IsVisible = true;
@@ -49,11 +42,28 @@ namespace openTK_basics
             Icon = new WindowIcon(_icon);
 
             base.OnLoad();
+
+            GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+            //More code goes here
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
+
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+
+            //More code goes here
+
+            SwapBuffers();
+        }
+
+        protected override void OnFramebufferResize(FramebufferResizeEventArgs e)
+        {
+            base.OnFramebufferResize(e);
+
+            GL.Viewport(0, 0, e.Width, e.Height);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
