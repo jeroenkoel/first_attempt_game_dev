@@ -14,6 +14,16 @@ namespace openTK_basics
 {
     class Game : GameWindow
     {
+
+        // vertices cooridinates for the triangle
+        float[] vertices = {
+            -0.5f, -0.5f, 0.0f,
+            0.5f, -0.5f, 0.0f,
+            0.0f, 0.5f, 0.0f
+        };
+        // a buffer for the vertices
+        int VertexBufferObject;
+
         public Game(int width, int height, string title)
             : base(GameWindowSettings.Default, new NativeWindowSettings()
             {
@@ -47,6 +57,12 @@ namespace openTK_basics
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
             // More code goes here
+
+            // creating the buffer object holding the vertices which will be drawn statically
+            VertexBufferObject = GL.GenBuffer();
+            GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float),
+                vertices, BufferUsageHint.StaticDraw);
         }
 
         // Function that does everything that needs to be done on rendering a frame
