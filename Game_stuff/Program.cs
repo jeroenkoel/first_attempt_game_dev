@@ -1,5 +1,5 @@
 ﻿using System;
-using OpenTK.Windowing.GraphicsLibraryFramework;
+
 using openTK_basics;
 
 namespace Game_stuff

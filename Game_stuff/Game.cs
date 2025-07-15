@@ -3,12 +3,12 @@ using System.IO;
 
 using OpenTK.Windowing.Desktop;
 using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Common.Input;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.GraphicsLibraryFramework;
 
 using StbImageSharp;
-using OpenTK.Windowing.Common.Input;
 
 namespace openTK_basics
 {
@@ -18,7 +18,7 @@ namespace openTK_basics
             : base(GameWindowSettings.Default, new NativeWindowSettings()
             {
                 Title = title,
-                Size = new Vector2i(width, height),
+                ClientSize = new Vector2i(width, height),
                 WindowBorder = WindowBorder.Resizable,
                 StartVisible = false,
                 StartFocused = true,
