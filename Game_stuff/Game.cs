@@ -31,6 +31,7 @@ namespace openTK_basics
             CenterWindow();
         }
 
+        // This is what gets done on creating and opening the window
         protected override void OnLoad()
         {
             IsVisible = true;
@@ -45,20 +46,22 @@ namespace openTK_basics
 
             GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
-            //More code goes here
+            // More code goes here
         }
 
+        // Function that does everything that needs to be done on rendering a frame
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            //More code goes here
+            // More code goes here
 
             SwapBuffers();
         }
 
+        // used to fix the window if it gets resized. That way it doesn'st stay with the old window size
         protected override void OnFramebufferResize(FramebufferResizeEventArgs e)
         {
             base.OnFramebufferResize(e);
