@@ -23,8 +23,10 @@ namespace openTK_basics
             0.5f, -0.5f, 0.0f,
             0.0f, 0.5f, 0.0f
         };
+        
         // a buffer for the vertices
         int VertexBufferObject;
+
         // The shader we will be using
         Shader shader;
 
