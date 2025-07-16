@@ -27,6 +27,9 @@ namespace openTK_basics
         // a buffer for the vertices
         int VertexBufferObject;
 
+        // a VBO
+        int VertexArrayObject;
+
         // The shader we will be using
         Shader shader;
 
@@ -64,13 +67,24 @@ namespace openTK_basics
 
             // More code goes here
 
-            // creating the buffer object holding the vertices which will be drawn statically
+            // loading the shaders
+            shader = new Shader("./../../../../shaders/shader.vert", "./../../../../shaders/shader.frag");
+
+            // Create the VBO
             VertexBufferObject = GL.GenBuffer();
+            // Create the VAO
+            VertexArrayObject = GL.GenVertexArray();
+
+            // 1. Bind the VAO
+            GL.BindVertexArray(VertexArrayObject);
+
+            // 2. copy our vertices array in a buffer for OpenGL to use
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            // loading the shaders
-            shader = new Shader("./../../../../shaders/shader.vert", "./../../../../shaders/shader.frag");
+            // 3. then set our vertex attributes pointers
+            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.EnableVertexAttribArray(0);
         }
 
         // Function that does everything that needs to be done on rendering a frame
@@ -81,6 +95,11 @@ namespace openTK_basics
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
             // More code goes here
+
+            // Drawing the triangle on every frame
+            shader.Use();
+            GL.BindVertexArray(VertexArrayObject);
+            GL.DrawArrays(PrimitiveType.Triangles, 0, 3);
 
             SwapBuffers();
         }
