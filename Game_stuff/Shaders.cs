@@ -75,6 +75,12 @@ namespace Shaders
             GL.DeleteShader(VertexShader);
         }
 
+        // Function for Dynamically retrieving the Shader layout
+        public int GetAttribLocation(string attribName)
+        {
+            return GL.GetAttribLocation(Handle, attribName);
+        }
+
         public void Use()
         {
             GL.UseProgram(Handle);
