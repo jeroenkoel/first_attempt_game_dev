@@ -10,6 +10,8 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 
 using StbImageSharp;
 
+using Shaders;
+
 namespace openTK_basics
 {
     class Game : GameWindow
@@ -23,6 +25,8 @@ namespace openTK_basics
         };
         // a buffer for the vertices
         int VertexBufferObject;
+        // The shader we will be using
+        Shader shader;
 
         public Game(int width, int height, string title)
             : base(GameWindowSettings.Default, new NativeWindowSettings()
@@ -61,8 +65,10 @@ namespace openTK_basics
             // creating the buffer object holding the vertices which will be drawn statically
             VertexBufferObject = GL.GenBuffer();
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
-            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float),
-                vertices, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
+
+            // loading the shaders
+            shader = new Shader("./../../../../shaders/shader.vert", "./../../../../shaders/shader.frag");
         }
 
         // Function that does everything that needs to be done on rendering a frame
@@ -93,6 +99,15 @@ namespace openTK_basics
             {
                 Close();
             }
+        }
+
+        protected override void OnUnload()
+        {
+            base.OnUnload();
+
+            // More code goes here
+
+            shader.Dispose();
         }
     }
 }
