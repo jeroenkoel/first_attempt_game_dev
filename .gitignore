@@ -1,3 +1,4 @@
 # tool kit stuff to ginore
 Game_stuff/bin/*
 Game_stuff/obj/Debug/*
+.vscode
